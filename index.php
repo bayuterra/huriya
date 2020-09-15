@@ -20,30 +20,34 @@ function build($array){
 	return http_build_query($array);
 }
 
-function register($key){
-$param= [
-	"a"    => "CreateAccount",
-	"Key"  => $key ];
-$pos  = build($param);	
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL,"https://cors-anywhere.herokuapp.com/https://www.999doge.com/api/web.aspx");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS,$pos);  //Post Fields
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$headers = [
-    'X-Requested-With: XMLHttpRequest',
-];
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-$server_output = curl_exec ($ch);
-return $server_output;
+function rand_string( $length ) {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    return substr(str_shuffle($chars),0,$length);
 }
 
-$key = "14effa7fe5544337a903960b4488b3ac";
-$cur = "doge";
-$gos = "";
+function trade( $sesi,$hash,$bet,$hi,$lo ) {
+	$url  = "https://www.999dice.com/api/web.aspx";
+	$param= [
+		"a"              => "PlaceBet",
+		"s"              => $sesi,
+		"PayIn"          => $bet,
+		"Low"            => $lo,
+		"High"           => $hi,
+		"ClientSeed"     => $hash,
+		"Currency"       => "doge",
+		"ProtocolVersion" => 2  
+	];
+	$pos = build($param);
+	return curl("POST",$url,$pos); 
+}
 
-echo register($key);
+$sesi = $_POST['s'];
+$hash = "HURIYA".rand_string(7);
+$bet = $_POST['PayIn'];
+$hi = $_POST['High'];
+$lo = $_POST['Low'];
+
+echo trade($sesi,$hash,$bet,$hi,$lo);
+
+
 ?>
