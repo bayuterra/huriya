@@ -113,7 +113,7 @@ function depo($sesi){
 }
 
 if(isset($_POST['a'])) {
-	$key = "14effa7fe5544337a903960b4488b3ac";
+	$key = $_POST['Key'];
 	$sesi = $_POST['s'];
 	$username = $_POST['Username'];
 	$pass = $_POST['Password'];
