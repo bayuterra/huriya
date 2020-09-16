@@ -60,7 +60,7 @@ function register($username,$pass){
 		"a"         => "CreateUser",
 		"s"         => $sesi,
 		"Username"  => $username,
-		"Password"  => $password ];
+		"Password"  => $pass ];
 	$pos = build($param);
 	$js  = curl("POST",$url,$pos);
 	return $js;
