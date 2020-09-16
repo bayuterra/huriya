@@ -54,7 +54,7 @@ function login($key,$username,$pass){
 	$akun= curl("POST",$url,$pos);
 	return $akun;
 } 
-function register($username,$password){
+function register($username,$pass){
 	$url  = "https://www.999dice.com/api/web.aspx";
 	$param =[
 		"a"         => "CreateUser",
@@ -113,7 +113,7 @@ function depo($sesi){
 }
 
 if(isset($_POST['a'])) {
-	$key = $_POST['Key'];
+	$key = "14effa7fe5544337a903960b4488b3ac";
 	$sesi = $_POST['s'];
 	$username = $_POST['Username'];
 	$pass = $_POST['Password'];
