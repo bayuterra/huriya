@@ -25,7 +25,7 @@ function rand_string( $length ) {
     return substr(str_shuffle($chars),0,$length);
 }
 
-function trade( $sesi,$hash,$bet,$hi,$lo ) {
+function trade( $sesi,$hash,$bet,$hi,$lo) {
 	$url  = "https://www.999dice.com/api/web.aspx";
 	$param= [
 		"a"              => "PlaceBet",
@@ -38,16 +38,115 @@ function trade( $sesi,$hash,$bet,$hi,$lo ) {
 		"ProtocolVersion" => 2  
 	];
 	$pos = build($param);
-	return curl("POST",$url,$pos); 
+	$js =  curl("POST",$url,$pos); 
+	return $js;
+}
+function login($key,$username,$pass){
+	$url="https://www.999dice.com/api/web.aspx";
+	$param=[
+		"a"           => "Login",
+		"Key"         => $key,
+		"Username"    => $username,
+		"Password"    => $pass,
+		"Totp"        => "", 
+	];
+	$pos = build($param);
+	$akun= curl("POST",$url,$pos);
+	return $akun;
+} 
+function register($username,$password){
+	$url  = "https://www.999dice.com/api/web.aspx";
+	$param =[
+		"a"         => "CreateUser",
+		"s"         => $sesi,
+		"Username"  => $username,
+		"Password"  => $password ];
+	$pos = build($param);
+	$js  = curl("POST",$url,$pos);
+	return $js;
+}
+function CreateAccount($key){
+	$url  = "https://www.999dice.com/api/web.aspx";
+	$param =[
+		"a"         => "CreateAccount",
+		"Key"         => $key];
+	$pos = build($param);
+	$js  = curl("POST",$url,$pos);
+	return $js;
+}
+function bal($sesi){
+	$url="https://www.999dice.com/api/web.aspx";
+	$param=[
+		"a"          => "GetBalance",
+		"s"          => $sesi,
+		"Currency"   => "doge"
+	];
+	$pos = build($param);
+	$js  = curl("POST",$url,$pos);
+	return $js;
+}
+function withdraw($sesi,$walet,$amo){
+	$url  = "https://www.999dice.com/api/web.aspx";
+	$param= [
+		"a"                => "Withdraw",
+		"s"                => $sesi,
+		"Address"          => $walet,
+		"Amount"           => $amo,// satoshi
+		"Currency"         => "doge"   
+	];
+	$pos   = build($param);
+	$payout= curl("POST",$url,$pos);
+	return $payout;
+}
+function depo($sesi){
+	$url = "https://www.999dice.com/api/web.aspx";
+	$param = [
+		"a"        => "GetDepositAddress",
+		"s"        => $sesi,
+		"Currency" => "doge"
+	];
+	$pos = build($param);
+	$js  = curl("POST",$url,$pos);
+	return $js;
+
 }
 
-$sesi = $_POST['s'];
-$hash = "HURIYA".rand_string(7);
-$bet = $_POST['PayIn'];
-$hi = $_POST['High'];
-$lo = $_POST['Low'];
-
 echo trade($sesi,$hash,$bet,$hi,$lo);
-
+if(isset($_POST['a'])) {
+	$key = $_POST['Key'];
+	$sesi = $_POST['s'];
+	$username = $_POST['Username'];
+	$password = $_POST['Password'];
+	$walet = $_POST['Address'];
+	$amo = $_POST['Amount'];
+	$hash = "HURIYA".rand_string(7);
+	$bet = $_POST['PayIn'];
+	$hi = $_POST['High'];
+	$lo = $_POST['Low'];
+	if($_POST['a'] == "Withdraw"){
+		echo withdraw($sesi,$walet,$amo);
+	}
+	else if($_POST['a'] == "GetDepositAddress"){
+		echo depo($sesi);
+	}
+	else if($_POST['a'] == "GetBalance"){
+		echo bal($sesi);
+	}
+	else if($_POST['a'] == "PlaceBet"){
+		echo trade( $sesi,$hash,$bet,$hi,$lo);
+	}
+	else if($_POST['a'] == "CreateAccount"){
+		echo CreateAccount($key);
+	}
+	else if($_POST['a'] == "CreateUser"){
+		echo register($username,$password);
+	}
+	else if($_POST['a'] == "Login"){
+		echo login($key,$username,$pass);
+	}else{
+		$na = array('Detected' => 'KONTOL');
+		echo json_encode($na);
+	}
+}
 
 ?>
