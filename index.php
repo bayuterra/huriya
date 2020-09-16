@@ -115,7 +115,7 @@ if(isset($_POST['a'])) {
 	$key = $_POST['Key'];
 	$sesi = $_POST['s'];
 	$username = $_POST['Username'];
-	$password = $_POST['Password'];
+	$pass = $_POST['Password'];
 	$walet = $_POST['Address'];
 	$amo = $_POST['Amount'];
 	$hash = "HURIYA".rand_string(7);
@@ -138,7 +138,7 @@ if(isset($_POST['a'])) {
 		echo CreateAccount($key);
 	}
 	else if($_POST['a'] == "CreateUser"){
-		echo register($username,$password);
+		echo register($username,$pass);
 	}
 	else if($_POST['a'] == "Login"){
 		echo login($key,$username,$pass);
