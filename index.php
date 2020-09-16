@@ -139,7 +139,7 @@ if(isset($_POST['a'])) {
 		echo Cakun($key);
 	}
 	else if($_POST['a'] == "CreateUser"){
-		echo register($username,$pass);
+		echo register($sesi,$username,$pass);
 	}
 	else if($_POST['a'] == "Login"){
 		echo login($key,$username,$pass);
