@@ -54,7 +54,7 @@ function login($key,$username,$pass){
 	$akun= curl("POST",$url,$pos);
 	return $akun;
 } 
-function register($username,$pass){
+function register($sesi,$username,$pass){
 	$url  = "https://www.999dice.com/api/web.aspx";
 	$param =[
 		"a"         => "CreateUser",
