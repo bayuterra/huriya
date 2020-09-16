@@ -48,7 +48,7 @@ function login($key,$username,$pass){
 		"Key"         => $key,
 		"Username"    => $username,
 		"Password"    => $pass,
-		"Totp"        => "", 
+		"Totp"        => ""
 	];
 	$pos = build($param);
 	$akun= curl("POST",$url,$pos);
