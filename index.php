@@ -111,7 +111,6 @@ function depo($sesi){
 
 }
 
-echo trade($sesi,$hash,$bet,$hi,$lo);
 if(isset($_POST['a'])) {
 	$key = $_POST['Key'];
 	$sesi = $_POST['s'];
