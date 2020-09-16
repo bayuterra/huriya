@@ -147,6 +147,9 @@ if(isset($_POST['a'])) {
 		$na = array('Detected' => 'KONTOL');
 		echo json_encode($na);
 	}
-}
+}else{
+		$na = array('Detected' => 'KONTOL');
+		echo json_encode($na);
+	}
 
 ?>
