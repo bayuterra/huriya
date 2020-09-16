@@ -65,11 +65,12 @@ function register($username,$password){
 	$js  = curl("POST",$url,$pos);
 	return $js;
 }
-function CreateAccount($key){
+function Cakun($key){
 	$url  = "https://www.999dice.com/api/web.aspx";
 	$param =[
-		"a"         => "CreateAccount",
-		"Key"         => $key];
+		"a"           => "CreateAccount",
+		"Key"         => $key
+	];
 	$pos = build($param);
 	$js  = curl("POST",$url,$pos);
 	return $js;
@@ -135,7 +136,7 @@ if(isset($_POST['a'])) {
 		echo trade( $sesi,$hash,$bet,$hi,$lo);
 	}
 	else if($_POST['a'] == "CreateAccount"){
-		echo CreateAccount($key);
+		echo Cakun($key);
 	}
 	else if($_POST['a'] == "CreateUser"){
 		echo register($username,$pass);
