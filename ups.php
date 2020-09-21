@@ -48,7 +48,9 @@ if($_POST['a'] == 'Login'){
   $pass = $_POST['Password']
   echo login($username,$pass)
 }
-if($_POST['a'] == 'GetBalance'){
+else if($_POST['a'] == 'GetBalance'){
   $sesi = $_POST['s'];
   echo bal($sesi)
+}else{
+
 }
