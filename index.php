@@ -26,7 +26,7 @@ function rand_string( $length ) {
 }
 
 function trade( $sesi,$hash,$bet,$hi,$lo) {
-	$url  = "http://super999.ddns.net:999/api/web.aspx";
+	$url  = "https://www.notdicelol.com:9999/api/web.aspx";
 	$param= [
 		"a"              => "PlaceBet",
 		"s"              => $sesi,
@@ -42,7 +42,7 @@ function trade( $sesi,$hash,$bet,$hi,$lo) {
 	return $js;
 }
 function login($key,$username,$pass){
-	$url="http://super999.ddns.net:999/api/web.aspx";
+	$url="https://www.notdicelol.com:9999/api/web.aspx";
 	$param=[
 		"a"           => "Login",
 		"Key"         => $key,
@@ -55,7 +55,7 @@ function login($key,$username,$pass){
 	return $akun;
 } 
 function register($sesi,$username,$pass){
-	$url  = "http://super999.ddns.net:999/api/web.aspx";
+	$url  = "https://www.notdicelol.com:9999/api/web.aspx";
 	$param =[
 		"a"         => "CreateUser",
 		"s"         => $sesi,
@@ -66,7 +66,7 @@ function register($sesi,$username,$pass){
 	return $js;
 }
 function Cakun($key){
-	$url  = "http://super999.ddns.net:999/api/web.aspx";
+	$url  = "https://www.notdicelol.com:9999/api/web.aspx";
 	$param =[
 		"a"           => "CreateAccount",
 		"Key"         => $key
@@ -76,7 +76,7 @@ function Cakun($key){
 	return $js;
 }
 function bal($sesi){
-	$url="http://super999.ddns.net:999/api/web.aspx";
+	$url="https://www.notdicelol.com:9999/api/web.aspx";
 	$param=[
 		"a"          => "GetBalance",
 		"s"          => $sesi,
@@ -87,7 +87,7 @@ function bal($sesi){
 	return $js;
 }
 function withdraw($sesi,$walet,$amo){
-	$url  = "http://super999.ddns.net:999/api/web.aspx";
+	$url  = "https://www.notdicelol.com:9999/api/web.aspx";
 	$param= [
 		"a"                => "Withdraw",
 		"s"                => $sesi,
@@ -100,7 +100,7 @@ function withdraw($sesi,$walet,$amo){
 	return $payout;
 }
 function depo($sesi){
-	$url = "http://super999.ddns.net:999/api/web.aspx";
+	$url = "https://www.notdicelol.com:9999/api/web.aspx";
 	$param = [
 		"a"        => "GetDepositAddress",
 		"s"        => $sesi,
